@@ -1,6 +1,6 @@
 import { outputAst } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IssuesService } from '../issues.service';
 import { Output, EventEmitter } from '@angular/core';
 
@@ -19,14 +19,19 @@ export class IssueReportComponent implements OnInit {
 
   ngOnInit(): void {
     this.issueForm = this.builder.group({
-      title: [''],
+      title: ['', Validators.required],
       description: [''],
-      priority: [''],
-      type: ['']
+      priority: ['', Validators.required],
+      type: ['', Validators.required]
     });
   }
 
   addIssue() {
+    if(this.issueForm?.invalid) {
+      this.issueForm.markAllAsTouched();
+      return;
+    }
+
     this.issueService.createIssue(this.issueForm?.value);
     this.formClose.emit();
   }
