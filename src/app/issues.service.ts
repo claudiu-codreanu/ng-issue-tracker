@@ -19,4 +19,14 @@ export class IssuesService {
     issue.issueNo = this.issues.length + 1;
     this.issues.push(issue);
   }
+
+  completeIssue(issue: Issue) {
+    const closedIssue = {
+      ...issue,
+      completed: new Date()
+    };
+
+    const i = this.issues.findIndex(iss => iss === issue);
+    this.issues[i] = closedIssue;
+  }
 }
