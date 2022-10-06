@@ -29,4 +29,12 @@ export class IssuesService {
     const i = this.issues.findIndex(iss => iss === issue);
     this.issues[i] = closedIssue;
   }
+
+  getSuggestions(title: string): Issue[] {
+    if(title.length <= 3) {
+      return [];
+    }
+
+    return this.issues.filter(issue => issue.title.indexOf(title) !== -1)
+  }
 }
