@@ -10,7 +10,7 @@ export const issues: Issue[] = [
   },
   {
     issueNo: 2,
-    title:  'Display the adress details of a customer',
+    title:  'Display the address details of a customer',
     description: 'Add a column to display the details of the customer address in the customer list',
     priority: 'low',
     type: 'Feature'
