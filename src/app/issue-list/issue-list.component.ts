@@ -11,7 +11,9 @@ export class IssueListComponent implements OnInit {
 
   issues: Issue[] = [];
   showReportIssue = false;
+
   selectedIssue: Issue | null = null;
+  editedIssue: Issue | null = null;
 
   constructor(private issueService: IssuesService) { }
 
@@ -35,5 +37,13 @@ export class IssueListComponent implements OnInit {
     }
 
     this.selectedIssue = null;
+  }
+
+  onSave(saved: boolean) {
+    if(saved) {
+      this.getIssues();
+    }
+
+    this.editedIssue = null;
   }
 }

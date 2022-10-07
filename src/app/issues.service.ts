@@ -37,4 +37,16 @@ export class IssuesService {
 
     return this.issues.filter(issue => issue.title.indexOf(title) !== -1)
   }
+
+  updateIssue(issue: Issue) {
+    const clone = {
+      ...issue
+    };
+
+    let oldIssue = <Issue>this.issues.find(iss => iss.issueNo === clone.issueNo);
+
+    oldIssue.title = clone.title;
+    oldIssue.description = clone.description;
+    oldIssue.priority = clone.priority;
+  }
 }
